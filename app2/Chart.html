@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+adsa
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+</head>
+
+<body>
+    <!-- Table button -->
+    <div class="tableContainer">
+        <input type="button" onclick="CreateTableFromJSON()" value="Create Table from json" />
+        <p id="showData"></p>
+        <style>
+                th, td, p, input {
+                    font:14px Verdana;
+                }
+                table, th, td {
+                    border: solid 1px #DDD;
+                    border-collapse: collapse;
+                    padding: 2px 3px;
+                    text-align: center;
+                }
+                th {
+                    font-weight:bold;
+                }
+            </style>
+    </div>
+
+    <div class="chartContainer">
+        <input type="button" onclick="createChart()" value="Create Chart from Json" />
+        <p id="createData"></p>
+    </div>
+    <div class="ct-chart ct-perfect-fourth"></div>
+
+    <script>
+        function createChart() {
+            var wineData = [
+                {
+                    "Title": "1990 La Tâche, Domaine De La Romanée-Conti",
+                    "Price": "9",
+                    "Vintage": "2000",
+                    "Type": "Red",
+                    "Abv": "12%",
+                    "Country": "United Kingdom",
+                    "Region": "",
+                    "Appellation": "Surrey",
+                    "CurrentDate": "21/08/18",
+                    "HistoricalDate": "12/01/16",
+                    "HarvestSeason": "Spring"
+                },
+                {
+                    "Title": "Second Wine",
+                    "Price": "1",
+                    "Vintage": "2050",
+                    "Type": "Sparkling",
+                    "Abv": "22%",
+                    "Country": "Portugal",
+                    "Region": "Du Ruera",
+                    "Appellation": "DO Duera",
+                    "CurrentDate": "22/11/18",
+                    "HistoricalDate": "09/07/18",
+                    "HarvestSeason": "Spring"
+                }
+            ]
+    
+            // EXTRACT VALUE FOR HTML HEADER. 
+            var col = [];
+            for (var i = 0; i < wineData.length; i++) {
+                for (var key in wineData[i]) {
+                    if (col.indexOf(key) === -1) {
+                        col.push(key);
+                    }
+                }
+            }
+            var data = col;
+
+            // Create a new line chart object where as first parameter we pass in a selector
+            // that is resolving to our chart container element. The Second parameter
+            // is the actual data object.
+            var myChart = new Chartist.Line('.ct-chart', data);
+        }
+    </script>hfhf
+   <script>
+        function CreateTableFromJSON() {
+            var wineData = [
+                {
+                    "Title": "1990 La Tâche, Domaine De La Romanée-Conti",
+                    "Price": "99.99",
+                    "Vintage": "2000",
+                    "Type": "Red",
+                    "Abv": "12%",
+                    "Country": "United Kingdom",
+                    "Region": "",
+                    "Appellation": "Surrey",
+                    "CurrentDate": "21/08/18",
+                    "HistoricalDate": {
+                        "Date": "12/07/16",
+                        "Price": "75.99"
+                    },
+                    "HarvestSeason": "Spring"
+                },
+                {
+                    "Title": "Second Wine",
+                    "Price": "1000",
+                    "Vintage": "2050",
+                    "Type": "Sparkling",
+                    "Abv": "22%",
+                    "Country": "Portugal",
+                    "Region": "Du Ruera",
+                    "Appellation": "DO Duera",
+                    "CurrentDate": "22/11/18",
+                    "HistoricalDate": "09/07/18",
+                    "HarvestSeason": "Spring"
+                }
+            ]
+    
+            // EXTRACT VALUE FOR HTML HEADER. 
+            var col = [];
+            for (var i = 0; i < wineData.length; i++) {
+                for (var key in wineData[i]) {
+                    if (col.indexOf(key) === -1) {
+                        col.push(key);
+                    }
+                }
+            }
+    
+            // CREATE DYNAMIC TABLE.
+            var table = document.createElement("table");
+    
+            // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
+    
+            var tr = table.insertRow(-1);              // TABLE ROW.
+    
+            for (var i = 0; i < col.length; i++) {
+                var th = document.createElement("th");      // TABLE HEADER.
+                th.innerHTML = col[i];
+                tr.appendChild(th);
+            }
+    
+            // ADD JSON DATA TO THE TABLE AS ROWS.
+            for (var i = 0; i < wineData.length; i++) {
+    
+                tr = table.insertRow(-1);
+    
+                for (var j = 0; j < col.length; j++) {
+                    var tabCell = tr.insertCell(-1);
+                    tabCell.innerHTML = wineData[i][col[j]];
+                }
+            }
+    
+            // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
+            var divContainer = document.getElementById("showData");
+            divContainer.innerHTML = "";
+            divContainer.appendChild(table);
+        }
+    </script>
+</body>
+
+</html>
