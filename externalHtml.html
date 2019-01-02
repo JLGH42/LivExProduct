@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Chart HTML</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+</head>
+
+<body>
+    <!-- Table button -->
+    <div class="tableContainer">
+        <input type="button" onclick="table()" value="Create Table from json" />
+        <p id="showData"></p>
+        <style>
+            th,
+            td,
+            p,
+            input {
+                font: 14px Verdana;
+            }
+            
+            table,
+            th,
+            td {
+                border: solid 1px #DDD;
+                border-collapse: collapse;
+                padding: 2px 3px;
+                text-align: center;
+            }
+            
+            th {
+                font-weight: bold;
+            }
+        </style>
+
+        <script>
+            const mod = require('./functions/functions.js')
+
+            function table() {
+                return mod.createTableFromJSON();
+            }
+        </script>
+    </div>
+
+    <!-- Chart button -->
+    <div class="chartContainer">
+        <input type="button" onclick="chart()" value="Create Chart from Json" />
+        <p id="createData"></p>
+    </div>
+    <div class="ct-chart ct-square"></div>
+
+    <script>
+        const mod = require('./functions/functions.js')
+
+        function chart() {
+            return mod.createChart();
+        }
+    </script>
+</body>
+
+</html>
