@@ -2,9 +2,7 @@
     width: 700px;
     height: 400px;
 } */
-.ct-chart {
-    position: center;
-}
+
 .ct-legend {
     position: relative;
     z-index: 10;
@@ -49,24 +47,4 @@ li:nth-child(3)::before {
 
 li:nth-child(1n+4)::before {
     background-color: #F06292;
-}
-
-th,
-td,
-p,
-input {
-    font: 14px Verdana;
-}
-
-table,
-th,
-td {
-    border: solid 1px #DDD;
-    border-collapse: collapse;
-    padding: 10px 3px;
-    text-align: center;
-}
-
-th {
-    font-weight: bold;
 }
